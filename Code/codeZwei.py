@@ -14,31 +14,16 @@ try:
 except FileNotFoundError as e:
     print("فایل یافت نشد!")
 
+min = readDict['min']
+max = readDict['max']
 dimention = readDict['dimention']
-matA = numpy.array(readDict['matrixA'])
-matB = numpy.array(readDict['matrixA'])
+matA = readDict['matAj']
+matB = readDict['matBj']
+solvedj = readDict['solvedj']
 
-print("Create matrix[A]:")
-baze = [readDict["min"], readDict["max"],]
-
-matA = random.random_integers(baze[0], baze[1], size=(dimention, dimention))
-print("|------------------------------|")
-print("matrix[A]: ")
 print(matA)
-print("|------------------------------|")
-
-# ---------- Trace ----------
-#print(f"matrix[A][3]:   {matA[2]}")
-#print(f"matrix[A][3][2]:{matA[2][1]}")
-
-matB = random.random_integers(baze[0], baze[1], (dimention))
-print("|------------------------------|")
-print("matrix[B]: ")
-print(matB)
-print("|------------------------------|")
 
 
-#solved = linalg.solve(matA, matB)
 x = zeros(dimention , float);
 
 for k in range(dimention-1):
