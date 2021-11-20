@@ -54,9 +54,8 @@ for i in range(dimention-2,-1,-1):
 print('----- The solution is: -----')
 print(x)
 
-matAj = json.dumps(matA_backup)
-matBj = json.dumps(matB)
-solvedj = json.dumps(x.tolist())
+
+solvedj = x.tolist()
 
 mainDict = {
     "type" : "Calculated",
