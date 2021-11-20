@@ -2,6 +2,12 @@ from numpy import mat, promote_types, random, linalg
 import os
 from pathlib import Path
 import json
+
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
 #import numpy as np
 dimention = int(input("Enter matrix dimention: "))
 
@@ -28,20 +34,19 @@ solved = linalg.solve(matA, matB)
 print('----- The solution is: -----')
 print(solved)
 
+matAj = matA.tolist()
+matBj = matB.tolist()
+solvedj = solved.tolist()
 
-matAj = json.dumps(matA.tolist())
-matBj = json.dumps(matB.tolist())
-solvedj = json.dumps(solved.tolist())
 
 mainDict = {
     "type" : "Computed",
     "min" : baze[0],
     "max" : baze[1],
-    "dimention" : dimention,
-    "matrixA" : matAj,
-    "matrixB" : matBj,
-    "solution" : solvedj
-    
+    "dimention" : dimention,   
+    "matAj" : matAj,   
+    "matBj" : matBj,   
+    "solvedj" : solvedj,   
 }
 #-----------------------------------------------------------
 
@@ -50,6 +55,7 @@ try:
     with open(os.path.join(BaseDir, "Computed.json"), 'w') as file:
         
         json.dump(mainDict, file, indent=4)
+        
 
 except FileNotFoundError as e:
     print("فایل یافت نشد!")
