@@ -1,28 +1,34 @@
-import numpy as np
+from numpy import promote_types, random, linalg
+#import numpy as np
 dimention = int(input("Enter matrix dimention: "))
-#s = np.random.randint(-1000, 1000)
 
-mat_1 = np.random.rand(dimention, dimention,)
-print("Mat_1: ")
-print(mat_1)
+print("Create matrix[A]:")
+baze = [int(input("Min matrix[A]:")), int(input("Max matrix[A]:")),]
+
+matA = random.random_integers(baze[0], baze[1], size=(dimention, dimention))
+print("|------------------------------|")
+print("matrix[A]: ")
+print(matA)
+print("|------------------------------|")
 
 # ---------- Trace ----------
-print(f"Mat-1[3]:{mat_1[2]}")
-print(f"Mat-1[3][2]:{mat_1[2][1]}")
+#print(f"matrix[A][3]:   {matA[2]}")
+#print(f"matrix[A][3][2]:{matA[2][1]}")
 
-answer = np.random.rand(dimention)
-print(answer)
+print("\nCreate matrix[B]:")
+baze2 = [int(input("Min matrix[B]:")), int(input("Max matrix[B]:")),]
+matB = random.random_integers(baze2[0], baze2[1], (dimention))
+print("|------------------------------|")
+print("matrix[B]: ")
+print(matB)
+print("|------------------------------|")
 
-#A = s*a
-#B = s*b
+solved = linalg.solve(matA, matB)
+print('----- The solution is: -----')
+print(solved)
 
-#print("A = ")
-#print(A)
-#print("B = ")
-#print(B)
-z=np.linalg.solve(A,B)
-print('The solution is:')
-print(z)
+
+
 file = "َABn.txt"
 file = open('ABn.txt', "w")
 
@@ -37,5 +43,3 @@ file.write(str(B))
 file.write(" The solution is: ")
 file.write(str(z))
 file.close()
-
-
