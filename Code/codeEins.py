@@ -34,8 +34,9 @@ matBj = json.dumps(matB.tolist())
 solvedj = json.dumps(solved.tolist())
 
 mainDict = {
-    "A" : baze[0],
-    "B" : baze[1],
+    "type" : "Computed",
+    "min" : baze[0],
+    "max" : baze[1],
     "dimention" : dimention,
     "matrixA" : matAj,
     "matrixB" : matBj,
