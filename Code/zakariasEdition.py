@@ -1,6 +1,7 @@
 from numpy import mat, promote_types, random, linalg
 import os
 from pathlib import Path
+import json
 #import numpy as np
 dimention = int(input("Enter matrix dimention: "))
 
@@ -29,27 +30,25 @@ solved = linalg.solve(matA, matB)
 print('----- The solution is: -----')
 print(solved)
 
+
+matAj = json.dumps(matA.tolist())
+matBj = json.dumps(matB.tolist())
+solvedj = json.dumps(solved.tolist())
+
+mainDict = {
+    "dimention" : dimention,
+    "matrixA" : matAj,
+    "matrixB" : matBj,
+    "solution" : solvedj
+    
+}
 #-----------------------------------------------------------
 
 BaseDir = Path(__file__).resolve().parent
 try:
-    with open(os.path.join(BaseDir, "input.txt"), 'w') as file:
-        file.write("Dimention: ")
-        file.write(str(dimention))
-        file.write("\n")
+    with open(os.path.join(BaseDir, "Computed.json"), 'w') as file:
         
-        file.write("Matrix[A]: \n")
-        file.write(str(matA))
-        file.write("\n")
-        
-        file.write("Matrix[B]: \n")
-        file.write(str(matB))
-        file.write("\n")
-        
-        file.write("Solution : \n")
-        file.write(str(solved))
-        file.write("\n")
-        
+        json.dump(mainDict, file, indent=4)
 
 except FileNotFoundError as e:
     print("فایل یافت نشد!")
