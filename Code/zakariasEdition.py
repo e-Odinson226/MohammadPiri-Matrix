@@ -1,4 +1,6 @@
-from numpy import promote_types, random, linalg
+from numpy import mat, promote_types, random, linalg
+import os
+from pathlib import Path
 #import numpy as np
 dimention = int(input("Enter matrix dimention: "))
 
@@ -27,19 +29,27 @@ solved = linalg.solve(matA, matB)
 print('----- The solution is: -----')
 print(solved)
 
+#-----------------------------------------------------------
 
+BaseDir = Path(__file__).resolve().parent
+try:
+    with open(os.path.join(BaseDir, "input.txt"), 'w') as file:
+        file.write("Dimention: ")
+        file.write(str(dimention))
+        file.write("\n")
+        
+        file.write("Matrix[A]: \n")
+        file.write(str(matA))
+        file.write("\n")
+        
+        file.write("Matrix[B]: \n")
+        file.write(str(matB))
+        file.write("\n")
+        
+        file.write("Solution : \n")
+        file.write(str(solved))
+        file.write("\n")
+        
 
-file = "َABn.txt"
-file = open('ABn.txt', "w")
-
-file.write(" n is : ")
-file.write(str(n))
-
-file.write(" A is : ")
-file.write(str(A))
-file.write(" B is : ")
-file.write(str(B))
-
-file.write(" The solution is: ")
-file.write(str(z))
-file.close()
+except FileNotFoundError as e:
+    print("فایل یافت نشد!")
