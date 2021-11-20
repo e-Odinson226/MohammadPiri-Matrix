@@ -18,9 +18,7 @@ print("|------------------------------|")
 #print(f"matrix[A][3]:   {matA[2]}")
 #print(f"matrix[A][3][2]:{matA[2][1]}")
 
-print("\nCreate matrix[B]:")
-baze2 = [int(input("Min matrix[B]:")), int(input("Max matrix[B]:")),]
-matB = random.random_integers(baze2[0], baze2[1], (dimention))
+matB = random.random_integers(baze[0], baze[1], (dimention))
 print("|------------------------------|")
 print("matrix[B]: ")
 print(matB)
@@ -36,6 +34,8 @@ matBj = json.dumps(matB.tolist())
 solvedj = json.dumps(solved.tolist())
 
 mainDict = {
+    "A" : baze[0],
+    "B" : baze[1],
     "dimention" : dimention,
     "matrixA" : matAj,
     "matrixB" : matBj,
